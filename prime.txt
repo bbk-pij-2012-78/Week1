@@ -1,0 +1,2 @@
+String str = system.console().readline()
+println str

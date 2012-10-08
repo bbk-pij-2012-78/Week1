@@ -1,0 +1,9 @@
+Exercise 1
+Calculates if the users approximate age is greater than 17
+
+Exercise 2
+i is intiated at 10 so the code will not do anything as the loop only runs if i is less than 5
+
+Exercise 3
+Takes up to ten numbers from the user. If the number is not equal to 1 it reprints the number on screen
+If the user enters zero the loop exits

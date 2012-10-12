@@ -1,46 +1,60 @@
-String str = ""
+String strRank = '';
+String strSuit = '';
 int count = 0
 int num = 0
 boolean cont = true
-def cards = new String[5]
-def suits = new String[5]
+def cards = new String[4]
 boolean bPair = false;
 boolean bFlush = true;
-boolean bValid = true
+boolean bValid = true;
+
 
 while (count < 5) {
-    print("Enter Card Rank: ")
-    str = System.console().readLine()
-    
-    if (str == "K") {
-        num = 13;
-    }
-    else if (str == "Q") {
-        num = 12;
-    }
-    else if (str == "J") {
-        num = 11;
-    }
-    else {
-        num = Integer.parseInt(str)
-    	if ((num < 1) or (num > 10)) {
-    	    bValid = false;
-    	}
-    }
-    
-    cards[count] = num;
-    
-    print("Enter Card Suit: ")
-    str = System.console().readLine()
-    suits[count] = str;    
-    
-    if (bValid == true) {
-        count ++;
-    {
-    else {
-        println("Invalid Card - Re Enter")
-    }
-    
+	
+	//set the valid flag to false
+	bValid = false;
+	
+	//loop until the user enters a valid card
+	while (bValid == false) {
+		print('Enter Card ' + (count + 1).toString()  + ' Rank: ')
+      	strRank = System.console().readLine()
+        
+		//check if the entry is a number
+		if (strRank.isNumber() == true) {
+			if ((Integer.parseInt(strRank) >= 1) && (Integer.parseInt(strRank) <= 10)) {
+				bValid = true;
+			}
+		}
+		else {
+			if ((strRank.toUpperCase() == 'J') || (strRank.toUpperCase() == 'Q') || (strRank.toUpperCase() == 'K')) {
+				bValid = true;
+			} 
+		}
+		if (bValid == false) {
+			println('Invalid Rank. Enter 1 to 10 or J, Q, K')
+		}
+	}
+	
+	//reset the valid flag and read the suit
+	bValid = false;
+	
+	while (bValid == false) {
+		print('Enter Card ' + (count + 1).toString() + ' Suit: ')
+		strSuit = System.console().readLine()
+		
+		if ((strSuit.toUpperCase() == 'H') || (strSuit.toUpperCase() == 'C') || (strSuit.toUpperCase() == 'D') || (strSuit.toUpperCase() == 'S')) {
+			bValid = true;
+		}
+		else {
+			println('Invalid Suit Enter H, C, D or S');
+		}
+	}
+	  
+	//add the card to the array
+    cards[count] = strRank + strSuit.toUpperCase();    
+
+	count ++;	    
+
 }
 
 
@@ -48,19 +62,11 @@ while (count < 5) {
 
 
 count = 0;
-while (count < 5) {
-     println(cards[count] + " " + suits[count]);
+print('Your Hand - ');
+while (count <= 4) {
+     print(cards[count]);
      count ++;
 }
-
-count = 1;
-while (count < 5) {
-     if (suits[count -1] != suits[count]) {
-         bFlush = false;
-     }
-     count ++;
-}
-
 
 
 

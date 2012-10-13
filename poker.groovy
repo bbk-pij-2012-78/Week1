@@ -1,9 +1,11 @@
 String strRank = '';
 String strSuit = '';
-int count = 0
-int num = 0
-boolean cont = true
-def cards = new String[4]
+int count = 0;
+int count2 = 0;
+int count3 = 0;
+int num = 0;
+boolean cont = true;
+def cards = new String[5];
 boolean bPair = false;
 boolean bFlush = true;
 boolean bValid = true;
@@ -49,28 +51,53 @@ while (count < 5) {
 			println('Invalid Suit Enter H, C, D or S');
 		}
 	}
-	  
+	
 	//add the card to the array
-    cards[count] = strRank + strSuit.toUpperCase();    
-
-	count ++;	    
-
+	cards[count] = strRank + strSuit.toUpperCase();
+	
+	//check if any cards are the same as this is an invalid hand
+	count3 = 0;
+	count2 = 0;
+	bValid = true;
+	
+	while (count3 <= count) {
+		while (count2 <= count) {
+			if (count3 != count2) {
+				if (cards[count3].toString() == cards[count2].toString()) {
+					bValid = false;
+				}
+			}
+			count2 ++;
+		}
+		count3++;
+	}
+	
+	if (bValid == false) {
+		println('You Cannot Have The Same Card Twice. Please Re-enter.')
+	}
+	else {
+		//only increment the counter if the card is valid
+		count ++;	    
+	}
 }
 
-
-
-
-
+//display the hand on screen
 count = 0;
 print('Your Hand - ');
-while (count <= 4) {
-     print(cards[count]);
+while (count < 5) {
+     print(cards[count].toString() + ' ');
      count ++;
 }
 
 
 
-
-if (bFlush == true) {
-    println("FLUSH !!");
+if (bValid == false) {
+	println('Hand Is Not Valid !!')
 }
+else {
+	println('Hand Is Valid')
+}
+
+
+
+
